@@ -1,0 +1,285 @@
+
+# GitHub Copilot Prompt: Regulatory Compliance Campaign Manager Screen
+
+## Overview
+Implement a regulatory compliance campaign management dashboard for tracking and managing regulatory campaigns across multiple entities. This is a professional enterprise application for financial services compliance teams.
+
+## Technology Stack Requirements
+- **Framework**: React with TypeScript (or specify your preferred framework)
+- **Styling**: CSS Modules or Tailwind CSS for component styling
+- **State Management**: React hooks (useState, useEffect) or Redux if needed
+- **UI Components**: Create custom components (buttons, cards, tabs, filters)
+
+## Layout Structure
+
+### 1. Page Header
+- **Title**: "Regulatory Referential Campaigns" (large, bold heading)
+- **Subtitle**: "Manage and track regulatory compliance campaigns across all entities" (muted gray text)
+- **Styling**: Clean, professional typography with adequate spacing
+
+### 2. Tab Navigation Bar
+Create a horizontal tab navigation with the following tabs:
+- All Campaigns (default active)
+- Active
+- Draft
+- Completed
+- Archived
+
+**Tab Styling**:
+- Active tab: Blue bottom border (#0066CC), bold text
+- Inactive tabs: Gray text with hover effects
+- Smooth transition on tab changes
+
+### 3. Filters & Actions Bar
+Create a flexible filter bar with the following components arranged horizontally:
+
+**Left Side - Filters**:
+1. **Search Input**
+   - Placeholder: "Search campaigns..."
+   - Icon: Magnifying glass
+   - Full-text search across campaign ID and name
+
+2. **Status Filter Dropdown**
+   - Label: "Status"
+   - Options: All Statuses, Active, Draft, In Progress, Completed, Pending Approval, Archived
+
+3. **Owner Filter Dropdown**
+   - Label: "Owner"
+   - Options: All Owners, Jean Dupont, Marie Laurent, Pierre Moreau, Sophie Blanc
+
+4. **Regulation Type Filter Dropdown**
+   - Label: "Regulation"
+   - Options: All Types, MiFID II, DORA, AML 6AMLD, PSD3, EMIR, Basel III
+
+**Right Side - Actions**:
+- **Create Campaign Button**: Primary blue button (#0066CC)
+
+### 4. Campaign Cards Grid
+Display campaign cards in a responsive grid layout (single column on mobile, 2-3 columns on larger screens).
+
+## Campaign Card Component Structure
+
+Each card should contain the following sections:
+
+### Card Header
+1. **Campaign ID Badge**
+   - Pill-shaped badge with gray background
+   - Format: "REG-YYYY-NNN" (e.g., "REG-2026-001")
+   - Positioned at top-left of card
+
+2. **Campaign Title**
+   - Large, bold heading (h2 size)
+   - Left-aligned below campaign ID
+   - Examples:
+     - "MiFID II Data Quality Review - Q1 2026"
+     - "DORA Compliance Assessment - 2026"
+     - "AML 6AMLD Implementation & Gap Analysis"
+     - "PSD3 Readiness Assessment"
+
+3. **Status Badge**
+   - Pill-shaped badge positioned at top-right
+   - Color-coded by status:
+     - **Active**: Green background (#10B981), dark green text (#065F46)
+     - **In Progress**: Blue background (#DBEAFE), blue text (#1E40AF)
+     - **Pending Approval**: Yellow background (#FEF3C7), brown text (#92400E)
+     - **Draft**: Gray background (#E5E7EB), dark gray text (#1F2937)
+
+### Workflow Steps Visualization
+Create a horizontal step indicator showing the campaign workflow progression:
+
+**Steps** (in order):
+1. Draft
+2. Data Collection
+3. Review
+4. Approval
+5. Active
+
+**Visual Design**:
+- Horizontal layout with steps connected by lines
+- Each step is a circle with label below
+- **Completed steps**: Filled circle, solid connecting line (blue #0066CC)
+- **Current step**: Outlined circle with pulse/highlight effect
+- **Future steps**: Gray outlined circle, gray dashed line
+- Responsive: Stack vertically on mobile if needed
+
+**Implementation Requirements**:
+- Accept current step index as prop
+- Dynamically render step states based on progress
+- Add visual indicator (arrow or highlight) for current step
+
+### Campaign Metadata Section
+Display metadata in a grid layout with 4 items per row:
+
+1. **Owner**
+   - Label: "Owner" (bold)
+   - Value: Person's name (e.g., "Jean Dupont")
+
+2. **Start Date**
+   - Label: "Start Date" (bold)
+   - Value: Date in format "DD MMM YYYY" (e.g., "15 Jan 2026")
+
+3. **Deadline**
+   - Label: "Deadline" (bold)
+   - Value: Date in format "DD MMM YYYY" (e.g., "31 Mar 2026")
+   - Highlight in red if overdue
+
+4. **Entities**
+   - Label: "Entities" (bold)
+   - Value: Number of affected entities (e.g., "24 affected")
+
+5. **Activated** (when applicable)
+   - Label: "Activated" (bold)
+   - Value: Date in format "DD MMM YYYY"
+
+### Action Buttons
+Create a button group at the bottom of each card with:
+1. **View Details** - Primary button (blue background)
+2. **Edit** - Secondary button (white with border)
+3. **Export** - Secondary button (white with border)
+
+Alternative button sets for different statuses:
+- **Pending Approval**: View Details, Approve, Request Changes
+- **Draft**: View Details, Continue Editing, Delete
+
+## Sample Campaign Data
+
+```json
+[
+  {
+    "id": "REG-2026-001",
+    "title": "MiFID II Data Quality Review - Q1 2026",
+    "status": "in-progress",
+    "currentStep": 2,
+    "owner": "Jean Dupont",
+    "startDate": "2026-01-15",
+    "deadline": "2026-03-31",
+    "entities": 24,
+    "activatedDate": "2026-01-20"
+  },
+  {
+    "id": "REG-2025-089",
+    "title": "DORA Compliance Assessment - 2026",
+    "status": "active",
+    "currentStep": 4,
+    "owner": "Marie Laurent",
+    "startDate": "2025-12-01",
+    "deadline": "2026-02-10",
+    "entities": 32,
+    "activatedDate": "2026-01-05"
+  },
+  {
+    "id": "REG-2026-015",
+    "title": "AML 6AMLD Implementation & Gap Analysis",
+    "status": "in-progress",
+    "currentStep": 1,
+    "owner": "Pierre Moreau",
+    "startDate": "2026-02-01",
+    "deadline": "2026-06-30",
+    "entities": 45
+  },
+  {
+    "id": "REG-2026-008",
+    "title": "PSD3 Readiness Assessment",
+    "status": "pending",
+    "currentStep": 3,
+    "owner": "Sophie Blanc",
+    "startDate": "2026-01-20",
+    "deadline": "2026-04-15",
+    "entities": 18
+  }
+]
+```
+
+## Styling Guidelines
+
+### Color Palette
+- **Primary Blue**: #0066CC (buttons, active states, completed steps)
+- **Light Blue**: #DBEAFE (info status background)
+- **Green**: #10B981 (active status background)
+- **Dark Green**: #065F46 (active status text)
+- **Yellow**: #FEF3C7 (pending status background)
+- **Brown**: #92400E (pending status text)
+- **Navy**: #1E40AF (in-progress text)
+- **Gray Backgrounds**: #F9FAFB (page), #E5E7EB (borders)
+- **Dark Gray**: #1F2937 (text)
+
+### Design Tokens
+- **Border Radius**: 8px for cards, 4px for buttons, 20px for badges
+- **Shadows**: 
+  - Card: `0 1px 3px rgba(0,0,0,0.1)`
+  - Card Hover: `0 4px 6px rgba(0,0,0,0.1)`
+- **Spacing**: 16px grid system (use multiples of 8px)
+- **Font Sizes**: 
+  - Page title: 24px
+  - Card title: 18px
+  - Body text: 14px
+  - Metadata labels: 12px
+
+### Interactive States
+- **Hover Effects**: 
+  - Cards: Slight lift with enhanced shadow
+  - Buttons: Darker shade of background color
+  - Tabs: Subtle background color change
+- **Focus States**: Blue outline for accessibility
+- **Loading States**: Skeleton screens or shimmer effects
+
+## Component Architecture
+
+Suggested component breakdown:
+1. `CampaignDashboard` - Main container component
+2. `TabNavigation` - Tab switcher component
+3. `FilterBar` - Filters and search component
+4. `CampaignGrid` - Grid container for cards
+5. `CampaignCard` - Individual campaign card
+6. `WorkflowSteps` - Step progression indicator
+7. `StatusBadge` - Reusable status badge
+8. `ActionButtons` - Button group component
+
+## Functional Requirements
+
+1. **Filter Logic**:
+   - Combine all active filters (AND operation)
+   - Update results in real-time
+   - Show count of filtered results
+
+2. **Search**:
+   - Debounce search input (300ms delay)
+   - Search across campaign ID and title
+   - Case-insensitive matching
+
+3. **Tab Behavior**:
+   - Filter campaigns by status when tab is clicked
+   - Maintain other active filters
+   - Update URL params for shareable links
+
+4. **Sort Options** (bonus):
+   - Sort by deadline (ascending/descending)
+   - Sort by status
+   - Sort by campaign ID
+
+5. **Responsive Behavior**:
+   - Stack filters vertically on mobile
+   - Single column card layout on mobile
+   - Hamburger menu for additional actions on mobile
+
+## Accessibility Requirements
+- Semantic HTML (header, main, section, article)
+- ARIA labels for interactive elements
+- Keyboard navigation support
+- Sufficient color contrast (WCAG AA)
+- Focus indicators for all interactive elements
+
+## Implementation Notes
+- Use TypeScript interfaces for type safety
+- Implement prop validation
+- Add loading and error states
+- Consider pagination or infinite scroll for large datasets
+- Add empty state when no campaigns match filters
+- Implement smooth transitions between states
+
+## Expected Deliverables
+1. React components with TypeScript definitions
+2. CSS modules or styled-components for styling
+3. Mock data file with campaign examples
+4. Filter and search logic implementation
+5. Responsive layout implementation
